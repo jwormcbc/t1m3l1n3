@@ -1,0 +1,158 @@
+<html>
+<head>
+    <title>Timeline JSON data</title>
+
+    <style type="text/css">
+        body {
+            font-size: 10pt;
+            font-family: verdana, sans, arial, sans-serif;
+        }
+    </style>
+
+    <script type="text/javascript" src="timeline.js"></script>
+    <link rel="stylesheet" type="text/css" href="timeline.css">
+    <script type="text/javascript" src="timeline-locales.js"></script>
+    <script type="text/javascript" src="jquery-1.10.2.js"></script>
+
+    <script type="text/javascript">
+
+        var timeline;
+        var data;
+        var server="http://localhost:8084/Uploader/TMServlet";
+        
+          function getSelectedRow() {
+            var row = undefined;
+            var sel = timeline.getSelection();
+            if (sel.length) {
+                if (sel[0].row != undefined) {
+                    row = sel[0].row;
+                }
+            }
+            return row;
+        }
+
+     
+        function drawVisualization(jsonName) {
+   //$.getJSON(server+"/recursos/test.json", function(dataj) {
+  $(document).ready(function() {
+  $.ajaxSetup({ cache: false });
+});
+
+
+
+    $.ajax(
+    {
+        url: server,
+        data: {opc:'2'},
+        success: function(response)
+        {
+                           var dataj=null;
+                           console.log(response);
+                           eval("dataj="+ response + ";"); // Codifica a Json 
+                           
+                           
+    var dataSize=dataj.length;
+    for(var i=0;i<dataSize;i++){
+    dataj[i].start=eval(dataj[i].start);
+    dataj[i].end=eval(dataj[i].end);
+    console.log("start:" +dataj[i].start +"  end:" + dataj[i].end + "   index:" + i);
+   }
+       data=dataj;
+   
+   console.log(data);
+            // specify options
+            var options = {
+                'width':  '100%',
+                'height': '600px',
+                'editable': true,   // enable dragging and editing events
+                'style': 'box',
+                'locale' : 'es'
+            };
+            
+
+            // Instantiate our timeline object.
+            timeline = new links.Timeline(document.getElementById('mytimeline'));
+
+            function onRangeChanged(properties) {
+                document.getElementById('info').innerHTML += 'rangechanged ' +
+                        properties.start + ' - ' + properties.end + '<br>';
+            }
+
+            // attach an event listener using the links events handler
+            links.events.addListener(timeline, 'rangechanged', onRangeChanged);
+            links.events.addListener(timeline, 'select', onselect);
+
+            // Draw our timeline with the created data and options
+            timeline.draw(data, options);
+                           
+                           
+        }
+    });
+
+/*
+   $.getJSON("json/fileprueba.json?"+new Date().getTime(), function(dataj) {
+    var dataSize=dataj.length;
+    for(var i=0;i<dataSize;i++){
+    dataj[i].start=eval(dataj[i].start);
+    dataj[i].end=eval(dataj[i].end);
+    console.log("start:" +dataj[i].start +"  end:" + dataj[i].end + "   index:" + i);
+   }
+       data=dataj;
+   
+   console.log(data);
+            // specify options
+            var options = {
+                'width':  '100%',
+                'height': '600px',
+                'editable': true,   // enable dragging and editing events
+                'style': 'box',
+                'locale' : 'es'
+            };
+            
+
+            // Instantiate our timeline object.
+            timeline = new links.Timeline(document.getElementById('mytimeline'));
+
+            function onRangeChanged(properties) {
+                document.getElementById('info').innerHTML += 'rangechanged ' +
+                        properties.start + ' - ' + properties.end + '<br>';
+            }
+
+            // attach an event listener using the links events handler
+            links.events.addListener(timeline, 'rangechanged', onRangeChanged);
+            links.events.addListener(timeline, 'select', onselect);
+
+            // Draw our timeline with the created data and options
+            timeline.draw(data, options);
+   
+   });*/
+    
+            
+        }
+        
+        
+         // Make a callback function for the select item
+        var onselect = function (event) {
+            var row = getSelectedRow();
+            if (row != undefined) {
+                document.getElementById("info").innerHTML += "item " + row + " selected ::  datos: "+ data[row].content +" start: "+data[row].start+"<br>";
+                // Note: you can retrieve the contents of the selected row with
+                //       data.getValue(row, 2);
+            }
+            else {
+                document.getElementById("info").innerHTML += "no item selected<br>";
+            }
+            
+            alert(" " + row);
+        };
+
+        
+    </script>
+</head>
+
+<body onload="drawVisualization();">
+<div id="mytimeline"></div>
+<div id="info"></div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+principal
+http://localhost:8084/Uploader/timeline/index.html
+
+Altas:
+http://localhost:8084/Uploader/TMServlet?opc=1&nom=nombre_elemento&desc=descripcion_elemento&ini=2000-08-02 10:00:00&fin=2001-06-02 20:00:00
+
+Bajas:
+http://localhost:8084/Uploader/TMServlet?opc=3&id=3
+
+Consultas: SOLO CARGADO DESDE JS CON AJAX,NO APTO PARA URLS. ( no letal )
+http://localhost:8084/Uploader/TMServlet?opc=2
+Nota: esto no regresa HTML, regresa la respuesta Json para el timeline. Asi es como se corrije el problema de cache por leer json desde el un fichero.
+
+Actualizaciones:
+http://localhost:8084/Uploader/TMServlet?opc=4&id=3&nom=updattedi&desc=updatted desde la api HOY&ini=2000-08-06 11:00:00&fin=2001-06-06 21:00:00
