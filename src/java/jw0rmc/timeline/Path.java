@@ -10,6 +10,6 @@ package jw0rmc.timeline;
  */
 public class Path {
     //static String PATH="C:\\Users\\DellXps15\\Documents\\NetBeansProjects\\Uploader\\web\\timeline\\json\\"; //Develop 
-    static String PATH="/usr/local/tomcat7/webapps/TL/web/timeline/json/";  //Produccion
+    static String PATH="/usr/local/tomcat7/webapps/TL/timeline/json/";  //Produccion
     
 }
