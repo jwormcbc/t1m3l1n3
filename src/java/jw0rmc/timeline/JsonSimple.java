@@ -28,7 +28,7 @@ public class JsonSimple {
     final private String localPath;//"C:\Lanconta\Proyectos\JSFLogin\web\secured\js\timeline"; //local
     public static void main(String arga[]){
     System.out.println("jsoneando again!!!");
-    new JsonSimple("C:\\Users\\DellXps15\\Documents\\NetBeansProjects\\Uploader\\web\\timeline\\json").escribidor();
+    new JsonSimple("C:\\Users\\DellXps15\\Documents\\NetBeansProjects\\Uploader\\web\\timeline\\json\\").escribidor();
     }
     
     public JsonSimple(String absolutoPath){
@@ -70,7 +70,7 @@ public class JsonSimple {
         
 	try {
                 System.out.println(" " + list.toJSONString());
-		FileWriter file = new FileWriter(localPath+"\\"+fileName+".json");
+		FileWriter file = new FileWriter(localPath+fileName+".json");
 		file.write(list.toJSONString());
 		file.flush();
 		file.close();
@@ -104,7 +104,7 @@ public class JsonSimple {
  
 	try {
  
-		FileWriter file = new FileWriter(localPath+"\\test.json");
+		FileWriter file = new FileWriter(localPath+"test.json");
 		file.write(list.toJSONString());
 		file.flush();
 		file.close();
@@ -125,7 +125,7 @@ public class JsonSimple {
          int cont=0;
         try {
  
-                Object obj = parser.parse(new FileReader(localPath+"\\"+fileName+".json"));
+                Object obj = parser.parse(new FileReader(localPath+fileName+".json"));
  
                 jsonObject = (JSONArray) obj;
                

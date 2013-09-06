@@ -101,7 +101,7 @@ public class TMServlet extends HttpServlet {
                                     ex.printStackTrace();
                                      out.println("<h1>Adding: "+ex.toString()+"</h1>");
                                     }
-                                    new ControllerTL().addElemento(nom,desc, fechaI, fechaF);
+                                    new ControllerTL(Path.PATH).addElemento(nom,desc, fechaI, fechaF);
 
                                 out.println("<!DOCTYPE html>");
                                 out.println("<html>");
@@ -114,7 +114,7 @@ public class TMServlet extends HttpServlet {
                                 out.println("<h1>ini: "+ini+"</h2>  <br>");
                                 out.println("<h1>fin: "+fin+"</h2>  <br>");
 
-                                out.println("<h1>generando Json Source: "+new ControllerTL().creaHistoricoAJsonTimeline("fileprueba")+"</h2><br>");
+                                out.println("<h1>generando Json Source: "+new ControllerTL(Path.PATH).creaHistoricoAJsonTimeline("fileprueba")+"</h2><br>");
 
                                 out.println("</body>");
                                 out.println("</html>");
@@ -132,13 +132,13 @@ public class TMServlet extends HttpServlet {
                                 }
                     break;
                 case 2:
-                    out.print(new ControllerTL().consultaHistoricoJsonTimeline("fileprueba"));
+                    out.print(new ControllerTL(Path.PATH).consultaHistoricoJsonTimeline("fileprueba"));
                     break;
                 case 3:
                      if(procederEliminarActualizar)
                                 {
                               
-                                new ControllerTL().eliminaElemento(id);
+                                new ControllerTL(Path.PATH).eliminaElemento(id);
 
                                 out.println("<!DOCTYPE html>");
                                 out.println("<html>");
@@ -176,7 +176,7 @@ public class TMServlet extends HttpServlet {
                                     } catch (ParseException ex) {
                                       out.println("<h1>Actualizando: "+ex.toString()+"</h1>");
                                     }
-                                new ControllerTL().actualizaElemento(id,nom,desc, fechaI, fechaF);
+                                new ControllerTL(Path.PATH).actualizaElemento(id,nom,desc, fechaI, fechaF);
 
                                 out.println("<!DOCTYPE html>");
                                 out.println("<html>");

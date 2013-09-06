@@ -14,14 +14,18 @@ import java.util.Date;
  */
 public class ControllerTL {
     HelperTL htl=new HelperTL();
-    JsonSimple jsoneitor=new JsonSimple("C:\\Users\\DellXps15\\Documents\\NetBeansProjects\\Uploader\\web\\timeline\\json");
+    JsonSimple jsoneitor;
+    
+    public ControllerTL(String path){
+    jsoneitor=new JsonSimple(path);
+    }
     
     public static void main(String[] args) {
         int opc=5;
         
         switch(opc){
             case 1:
-                new ControllerTL().creaHistoricoAJsonTimeline("fileprueba");
+                new ControllerTL(Path.PATH).creaHistoricoAJsonTimeline("fileprueba");
                 break;
             case 2:
                 SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -34,13 +38,13 @@ public class ControllerTL {
                 } catch (ParseException ex) {
                 ex.printStackTrace();
                 }
-                new ControllerTL().addElemento("add2.5", "probando add elements prueba 2.5", fechaI, fechaF);
+                new ControllerTL(Path.PATH).addElemento("add2.5", "probando add elements prueba 2.5", fechaI, fechaF);
                 break;
             case 3:
-                new ControllerTL().consultaHistoricoJsonTimeline("fileprueba");
+                new ControllerTL(Path.PATH).consultaHistoricoJsonTimeline("fileprueba");
                 break;
             case 4:
-                new ControllerTL().eliminaElemento("3");
+                new ControllerTL(Path.PATH).eliminaElemento("3");
                 break;
             case 5:
                 SimpleDateFormat formatoDelTexto2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -53,7 +57,7 @@ public class ControllerTL {
                 } catch (ParseException ex) {
                 ex.printStackTrace();
                 }
-                new ControllerTL().actualizaElemento("3","updattingProbes", "prueba actualiza", fechaI2, fechaF2);
+                new ControllerTL(Path.PATH).actualizaElemento("3","updattingProbes", "prueba actualiza", fechaI2, fechaF2);
                 break;
             default:
                 System.out.println("nacha plus");
