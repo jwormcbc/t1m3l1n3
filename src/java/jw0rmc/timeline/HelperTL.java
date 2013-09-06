@@ -84,9 +84,17 @@ public boolean doActualizacionElemento(String id,String nombre,String descripcio
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q=session.createQuery("from Elementos where id="+Integer.parseInt(id));
         elemento=(Elementos)q.uniqueResult();
+        
+        if( nombre != null && nombre.length()>0)
         elemento.setNombre(nombre);
+        
+        if( descripcion != null && descripcion.length()>0)
         elemento.setDescripcion(descripcion);
+        
+        if( inicio != null)
         elemento.setInicio(inicio);
+        
+        if( final_ != null)
         elemento.setFinal_(final_);
         
         session.update(elemento);

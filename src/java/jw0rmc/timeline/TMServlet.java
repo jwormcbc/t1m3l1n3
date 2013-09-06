@@ -174,7 +174,7 @@ public class TMServlet extends HttpServlet {
                                     fechaI = formatoDelTexto.parse(fechaInicial);
                                     fechaF = formatoDelTexto.parse(fechaFinal);
                                     } catch (ParseException ex) {
-                                      out.println("<h1>Actualizando: "+ex.toString()+"</h1>");
+                                      System.out.println("Actualizando: "+ex.toString());
                                     }
                                 new ControllerTL(Path.PATH).actualizaElemento(id,nom,desc, fechaI, fechaF);
 
