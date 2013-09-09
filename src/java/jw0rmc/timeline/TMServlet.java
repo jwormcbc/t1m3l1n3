@@ -84,6 +84,7 @@ public class TMServlet extends HttpServlet {
             proceder=true;
             else
             proceder=false;
+            
              
             switch(opc){
             
