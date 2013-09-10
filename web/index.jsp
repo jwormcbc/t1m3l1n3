@@ -9,12 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>ups</title>
     </head>
     <body>
      <center>
         <form method="post" action="Uploadersn" enctype="multipart/form-data">
-            Select file to upload:
+            Seleccion:
             <input type="file" name="uploadFile" />
             <br/><br/>
             <input type="submit" value="Upload" />
