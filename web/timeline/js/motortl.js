@@ -31,7 +31,16 @@ $(document).ready(function() {
 $.ajaxSetup({ cache: false });
 });
 
-
+/*el formato es el siguiente YYYY,mm,DD,hh,mm,ss  */
+var start = getUrlVars()["start"];
+var fin = getUrlVars()["fin"];
+if(start && fin){
+var startDateObject=eval("new Date("+start+")");
+var finDateObject=eval("new Date("+fin+")");
+console.log("_____________________val");
+}else{
+ console.log("____________________no val");   
+}
 
 $.ajax(
 {
@@ -53,14 +62,26 @@ console.log("start:" +dataj[i].start +"  end:" + dataj[i].end + "   index:" + i)
    data=dataj;
 
 console.log(data);
-        // specify options
-        var options = {
-            'width':  '100%',
-            'height': '600px',
-            'editable': true,   // enable dragging and editing events
-            'style': 'box',
-            'locale' : 'es'
-        };
+
+
+        if(start && fin)
+                var options = {
+                    'width':  '100%',
+                    'height': '600px',
+                    'start' : startDateObject,
+                    'end'   : finDateObject,
+                    'editable': true,   // enable dragging and editing events
+                    'style': 'box',
+                    'locale' : 'es'
+                };
+        else
+                var options = {
+                'width':  '100%',
+                'height': '600px',
+                'editable': true,   // enable dragging and editing events
+                'style': 'box',
+                'locale' : 'es'
+               };
 
 
        //instanciamos
@@ -121,6 +142,18 @@ console.log(data);
     
             
         }
+        
+
+/*
+* Added  
+ */
+function getUrlVars() {
+    var vars = {};
+    var parts = unescape(window.location.href).replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
         
         
          // Callback  render de eventos
